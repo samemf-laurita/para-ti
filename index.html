@@ -143,9 +143,10 @@ if(i < texto.length){
 
 contenedor.innerHTML += texto.charAt(i);
 
-if(i % 3 == 0){
-  sonido.currentTime = 0:
-  sonido.play();
+if(i % 2 == 0){
+  let click = sonido.cloneNode();
+  click.volume = 0.2;
+  click.play();
 }
 i++;
 
