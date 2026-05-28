@@ -90,7 +90,6 @@ ejecutar archivo
 
 </div>
 
-<audio id="typingSound" src="typing.mp3"></audio>
 
 <script>
 
@@ -144,9 +143,29 @@ if(i < texto.length){
 contenedor.innerHTML += texto.charAt(i);
 
 if(i % 2 == 0){
-  let click = sonido.cloneNode();
-  click.volume = 0.2;
-  click.play();
+
+    try{
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        const oscillator = audioContext.createOscillator();
+
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.value = 800;
+
+        oscillator.type = "square";
+
+        gainNode.gain.value = 0.01;
+
+        oscillator.start();
+
+        oscillator.stop(audioContext.currentTime + 0.02);
+
+    }catch(e){}
 }
 i++;
 
