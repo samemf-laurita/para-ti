@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+
+<title>para_ti</title>
+
+<style>
+
+body{
+    background-color:black;
+    color:#00ff66;
+    font-family:Courier New;
+    padding:40px;
+    display:flex;
+    justify-content:center;
+}
+
+.box{
+    border:2px solid #00ff66;
+    padding:30px;
+    width:80%;
+    max-width:700px;
+    box-shadow:0 0 15px #00ff66;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.cursor{
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0;
+    }
+}
+
+button{
+    background:black;
+    color:#00ff66;
+    border:1px solid #00ff66;
+    padding:12px;
+    margin-top:20px;
+    cursor:pointer;
+    font-family:Courier New;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#00ff66;
+    color:black;
+}
+
+.hidden{
+    display:none;
+}
+
+#mensaje{
+    white-space:pre-wrap;
+    margin-top:25px;
+    line-height:1.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>recover.exe</h1>
+
+<p>> iniciando programa...</p>
+<p>> cargando...</p>
+<p>> error detectado:</p>
+<p>> te dejé ir por confundir ruido con algo real</p>
+
+<button onclick="mostrarMensaje()">
+ejecutar archivo
+</button>
+
+<div id="mensaje" class="hidden"></div>
+
+<p class="cursor">█</p>
+
+</div>
+
+<audio id="typingSound" src="typing.mp3"></audio>
+
+<script>
+
+const sonido = document.getElementById("typingSound");
+
+function mostrarMensaje(){
+
+const texto = `
+
+	⁠acceso concedido...
+
+
+Si estás viendo esto es porque hice algo que jamás pensé hacer:
+
+Un código para hacerme responsable de mis acciones y pésima toma de decisiones
+
+
+	⁠error detectado:
+haber confundido ruido con algo real.
+
+
+Solo quería decirte que entendí muchas cosas tarde,
+pero genuinamente extraño tu esencia...
+o mejor dicho:
+a ti.
+
+
+Y aunque no espero arreglar todo con una página sencilla,
+quería hacer algo que hablara un poquito en tu idioma.
+
+
+	⁠
+
+
+	⁠fin del mensaje
+
+`;
+
+const contenedor = document.getElementById("mensaje");
+
+contenedor.style.display = "block";
+
+contenedor.innerHTML = "";
+
+let i = 0;
+
+function escribir(){
+
+if(i < texto.length){
+
+contenedor.innerHTML += texto.charAt(i);
+
+sonido.currentTime = 0;
+
+sonido.play();
+
+i++;
+
+setTimeout(escribir, 35);
+
+}
+
+}
+
+escribir();
+
+}
+
+</script>
+
+</body>
+</html>
