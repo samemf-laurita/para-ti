@@ -143,10 +143,10 @@ if(i < texto.length){
 
 contenedor.innerHTML += texto.charAt(i);
 
-sonido.currentTime = 0;
-
-sonido.play();
-
+if(i % 3 == 0){
+  sonido.currentTime = 0:
+  sonido.play();
+}
 i++;
 
 setTimeout(escribir, 35);
